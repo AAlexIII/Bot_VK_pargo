@@ -10,3 +10,5 @@ gen
 vern
 
 
+venv/
+.gitignore
