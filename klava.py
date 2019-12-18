@@ -1,8 +1,193 @@
 import json
 
 
-def give_klav(situation, uu_name='Гена', ker_name='Оля', I_want_help='', me='Узнать данные', fill='Ввести данные',
+def give_klav(situation, uu_name='Гена', ker_name='Оля', I_want_help='Помочь', Who_I='Узнать данные', fill='Ввести данные',
               kolvo_par='Кол-во пар', musik='Предпочитаемую музыку', fipm='Факультет', znak='Знак'):
+    if situation == 0:
+        allready = {
+            "one_time": False,
+            "buttons": [
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label":'Погода'
+                    },
+                    "color": "positive"
+                }],[
+                    {
+                        "action": {
+                            "type": "text",
+                            "payload": "",
+                            "label": 'Я'
+                        },
+                        "color": "negative"
+                    }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": 'Осадки'
+                    },
+                    "color": "primary"
+                }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": Who_I
+                    },
+                    "color": "primary"
+                }], [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": 'Готово'
+                    },
+                    "color": "secondary"
+                }]
+            ]}
+        allready = json.dumps(allready, ensure_ascii=False).encode('utf-8')
+        return str(allready.decode('utf-8'))
+
+    if situation == 10:
+        allready = {
+            "one_time": False,
+            "buttons": [
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label":"ЯСНО"
+                    },
+                    "color": "positive"
+                }],[
+                    {
+                        "action": {
+                            "type": "text",
+                            "payload": "",
+                            "label": "Затянутое серое небо"
+                        },
+                        "color": "negative"
+                    }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": "Солнце иногда пробивалось"
+                    },
+                    "color": "primary"
+                }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": "Менялась кардинально в течении дня"
+                    },
+                    "color": "primary"
+                }], [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": 'го'
+                    },
+                    "color": "secondary"
+                }]
+            ]}
+        allready = json.dumps(allready, ensure_ascii=False).encode('utf-8')
+        return str(allready.decode('utf-8'))
+    if situation == 20:
+        allready = {
+            "one_time": False,
+            "buttons": [
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label":"Осадков Нет"
+                    },
+                    "color": "positive"
+                }],[
+                    {
+                        "action": {
+                            "type": "text",
+                            "payload": "",
+                            "label": "Дождь и Снег"
+                        },
+                        "color": "negative"
+                    }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": 'Дождь'
+                    },
+                    "color": "primary"
+                }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": "СНЕГ!!!"
+                    },
+                    "color": "primary"
+                }], [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": 'го'
+                    },
+                    "color": "secondary"
+                }]
+            ]}
+        allready = json.dumps(allready, ensure_ascii=False).encode('utf-8')
+        return str(allready.decode('utf-8'))
+    if situation == 30:
+        allready = {
+            "one_time": False,
+            "buttons": [
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label":'Скорее всего'
+                    },
+                    "color": "positive"
+                }],[
+                    {
+                        "action": {
+                            "type": "text",
+                            "payload": "",
+                            "label": 'Вряд ли'
+                        },
+                        "color": "negative"
+                    }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": 'Готово'
+                    },
+                    "color": "primary"
+                }],
+                [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": Who_I
+                    },
+                    "color": "primary"
+                }], [{
+                    "action": {
+                        "type": "text",
+                        "payload": "",
+                        "label": 'го'
+                    },
+                    "color": "secondary"
+                }]
+            ]}
+        allready = json.dumps(allready, ensure_ascii=False).encode('utf-8')
+        return str(allready.decode('utf-8'))
     if situation == 1:
         allready = {
             "one_time": False,
@@ -35,7 +220,7 @@ def give_klav(situation, uu_name='Гена', ker_name='Оля', I_want_help='', 
                     "action": {
                         "type": "text",
                         "payload": "",
-                        "label": me
+                        "label": Who_I
                     },
                     "color": "primary"
                 }], [{

@@ -41,7 +41,7 @@ class Server:
         :param message: содержимое отправляемого письма
         :return: None
         """
-        m = 'https://vk.com/id'
+        m = 'Работаем!'
         self.vk_api.messages.send(peer_id=send_id,
                                   message=m, random_id=random.randint(1, 999999))
 
@@ -60,20 +60,24 @@ class Server:
 
         model = load_model("weights.h5")
 
-        self.send_msg()
-
         mus_ans = ["РОК", 'ПОП', "Русский РЭП", "Классическую"]
         par_ans = ['1', '2', '3', '4']
         znak_ans = ["Рак, Скорпион, Рыбы", "Овен, Лев, Стрелец", "Близнецы, Весы, Водолей", "Телец, Дева, Козерог"]
         fipm_ans = ["ФЭиФ", "ФИПМ", "ФУ", "Другой хороший факультет"]
         priv = ['ку', 'хай', 'прив', 'привет', 'hi', 'здравствуй']
+        alex = ['Вряд ли', 'Скорее всего']
+        pogoda = ["ЯСНО", "Затянутое серое небо", "Солнце иногда пробивалось", "Менялась кардинально в течении дня"]
+        osad = ["Осадков Нет", "Дождь и Снег", "Дождь", "СНЕГ!!!"]
 
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
+
+        self.send_msg()
+
         for event in self.long_poll.listen():
-            print(6)  # Слушаем сервер
+            # print(6)# Слушаем сервер
             if event.type == VkBotEventType.MESSAGE_NEW:
-                print(7)
+                # print(7)
 
                 username = self.get_user_name(event.object.from_id)
                 peer = event.object.peer_id
@@ -104,8 +108,32 @@ class Server:
                         ready = False
                         break
 
-                if txt in priv:
-                    self.sms(peer, f"{username}, Здравствуй!", k=give_klav(situation=1))
+                # if txt in priv:
+                #    self.sms(peer, f"{username}, Здравствуй!", k=give_klav(situation=1))
+                if peer == 51101228:
+                    if txt == 'го':
+                        self.sms(peer, 'Удачи!', k=give_klav(situation=0))
+
+                    if txt == 'Погода':
+                        self.sms(peer, 'Ну и погода!', k=give_klav(situation=10))
+                    if txt == 'Осадки':
+                        self.sms(peer, 'Ну и ветерок!', k=give_klav(situation=20))
+                    if txt == 'Я':
+                        self.sms(peer, 'Вот это Я!', k=give_klav(situation=30))
+
+                    if txt in pogoda:
+                        cursor.execute("UPDATE good SET zod = :a WHERE ID = 000", {'a': txt})
+                        conn.commit()
+                        self.sms(peer, 'ОК', k=give_klav(situation=20))
+                    if txt in osad:
+                        cursor.execute("UPDATE good SET fak = :a WHERE ID = 000", {'a': txt})
+                        conn.commit()
+                        self.sms(peer, 'ОК', k=give_klav(situation=30))
+
+                    if txt in alex:
+                        cursor.execute("UPDATE good SET muslo = :a WHERE ID = 000", {'a': txt})
+                        conn.commit()
+                        self.sms(peer, 'ОК', k=give_klav(situation=0))
 
                 if txt == 'Начать' or txt == 'Ку' or txt == 'ку':
                     self.sms(peer, f'''Привет, {username}, я бот предсказатель, в моей голове 2 личности
