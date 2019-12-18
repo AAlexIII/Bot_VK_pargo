@@ -20,9 +20,7 @@ def get(vk_session, id_group, vk, text):
         # print("Смотрим время после получения количества всех картинок" + str(time.ctime(time.time())))
         num = random.randint(1, key_num)
         # print("Время до получения пикчи" + str(time.ctime(time.time())))
-        # walls = vk.wall.get(owner_id = str(id_group), count = 1, offset = num)['items']
         key = vk.wall.search(owner_id=str(id_group), query=text, count=1, offset=num)['items']
-        # walls = vk.wall.get(owner_id = str(id_group), count = 1, offset = key)['items']
         buf = []
         for element in key:
             buf.append('wall' + str(id_group) + '_' + str(element['id']))
@@ -37,9 +35,6 @@ login, password = "89817762764", "мойботномер1"
 vk_session = vk_api.VkApi(login, password, app_id=2685278)
 vk_session.auth(token_only=True)
 mode = 0
-# token = "ЗдесьЕстьВашТокен"
-# vk_session = vk_api.VkApi(token=token)
-# vk = vk_api.VkApi(token = "f1fff50eefe81bd537dcbb5e49d50c41f81e36c590098e57eef58058458307749819917439f7c4ef2c79f")
 session_api = vk_session.get_api()
 longpoll = VkLongPoll(vk_session)
 lis = []
