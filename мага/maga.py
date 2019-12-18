@@ -21,6 +21,8 @@ def get(vk_session, id_group, vk, text):
         num = random.randint(1, key_num)
         # print("Время до получения пикчи" + str(time.ctime(time.time())))
         key = vk.wall.search(owner_id=str(id_group), query=text, count=1, offset=num)['items']
+
+
         buf = []
         for element in key:
             buf.append('wall' + str(id_group) + '_' + str(element['id']))
